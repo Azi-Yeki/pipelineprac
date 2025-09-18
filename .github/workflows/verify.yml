@@ -31,5 +31,5 @@ jobs:
 
     - name: Print secret and version
       run: |
-        echo "GitHub Secret: ${{ secrets.MY SECRET }}"
+        echo "GitHub Secret: ${{ secrets.MY_SECRET }}"
         echo "Project Version: ${{ steps.get_version.outputs.version }}"
