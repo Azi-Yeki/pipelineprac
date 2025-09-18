@@ -1,0 +1,33 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: invoicing
+    ports:
+      - "3307:3306"
+    volumes:
+      - invoicing_mysql_data:/var/lib/mysql
+    networks:
+      - invoicing_network
+
+  app:
+    build: .
+    image: invoicing-app
+    container_name: app
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    volumes:
+      - ./target:/app
+    command: java -jar /app/invoicing-0.0.1-SNAPSHOT.jar
+    ports:
+      - "8071:8099"
+    networks:
+      - invoicing_network
+
+networks:
+  invoicing_network:
+
+volumes:
+  invoicing_mysql_data:

@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: config
+  datasource:
+    url: jdbc:mysql://localhost:3306/invoicing?allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  profiles:
+    active: prod
+
+#invoicing:
+#  dev:
+#    address: dev@example.com
+#    port: 8080
+#  prod:
+#    address: prod@example.com
+#    port: 8081
