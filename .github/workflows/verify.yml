@@ -7,29 +7,10 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Set up Java
-      uses: actions/setup-java@v3
-      with:
-        distribution: 'temurin'
-        java-version: '17'
-
-    - name: Run Maven verify
+    - name: run Maven validate
       run: mvn validate
 
-    - name: Get project version
-      id: get_version
-      run: |
-        VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-        echo "Project version: $VERSION"
-        echo "version=$VERSION" >> $GITHUB_OUTPUT
-
-    - name: Print secret and version
+    - name: print secret and version
       run: |
         echo "GitHub Secret: ${{ secrets.MY_SECRET }}"
         echo "Project Version: ${{ steps.get_version.outputs.version }}"
